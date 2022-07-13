@@ -1,0 +1,25 @@
+1. 컴포넌트들을 만들고 App.js에 {BrowserRouter,Route}를 임포트
+2. BrowserRouter로 감싸고 Route로 path=경로 , component=컴포넌트 함
+3. 현재 라우터돔의 최신 버전은 6.3.0버전인데 강의들은 대부분 5.3.0에 맞게 되어있는듯 함 오류 남
+
+- 라우터에서 사용하는 props엔 histort,match,location props가 들어있다.
+
+- 겹치는 path, 예를들어 /와 /index, /profile 과 /profile/id 같은 경우 겹치는 경로마다 excat props를 줘야 함. 안 그러면 여러개 중복되서 렌더된다.
+
+- query-string 라이브러리를 사용하면 쿼리스트링을 받기가 굉장히 편해진다.(About.jsx/9,10)
+
+- 리액트 라우터의 Switch를 사용하면 기본경로 / 를 제외하고 excat없이 경로 표현 가능하다. 설정할 때 디테일한 경로일수록 위로, /와 not fount를 맨아래에
+
+- Link : SPA를 만들떈 필수 따로 컴포넌트를 만들어서 App.js에 임포트함. props는 to="경로"가 있다.
+
+- NavLink : active에 대한 스타일 지정이 가능. Route의 path처럼 동작하기 때문에 겹치는 경로가 있다면 excat가 필요하다. 쿼리스트링을 받는 경우 
+isActive={(match, location) => {
+              return match !== null && location.search !== "";
+            }}
+처럼 검사해 줘야 함. 안 하면 엉뚱한데 active가 걸림
+
+- props.history에 경로를 push해 주면 그 경로로 이동한다.
+- 직계가 아니라 단계에 좀 차이가 있어도 리액터 라우트의 withRouter와 Hooks를 사용하면 props를 단계적으로 내릴 필요 없이 된다고 한다.
+
+
+- redirect : to경로로 그냥리다이렉트 해주기만하는 Redirect 컴포넌트도 있음.
